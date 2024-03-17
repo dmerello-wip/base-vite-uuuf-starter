@@ -1,0 +1,12 @@
+/*Vendor styles (possibly scss) import with @use */
+//here import vendors
+// SPLIDE
+//@use '@splidejs/splide/src/css/template/default/index';
+@use '@splidejs/splide/src/css/template/default/index';
+// PLYR
+@use "plyr/src/sass/plyr";
+
+/*Vendor styles overrides*/
+//here use local overrides
+//for instance:
+@use "v-some-vendor";

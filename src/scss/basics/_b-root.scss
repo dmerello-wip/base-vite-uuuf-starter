@@ -1,0 +1,10 @@
+@use "../utils";
+
+//generate z index custom vars (--zi-[base_element]: [index]) at root
+@include utils.zi-rootVars();
+
+//generate all colors at root (--[theme_prefix_colors]-[color]: [color_value]);
+@include utils.generateColorsCustomVars();
+
+//generate --main-container-pad-x across viewports as config
+@include utils.containerPadVars()

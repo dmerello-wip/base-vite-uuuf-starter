@@ -1,0 +1,28 @@
+/node_modules
+/dist
+/hot
+/storage
+/storage/*.key
+/vendor
+.env
+.env.local
+.phpunit.result.cache
+Homestead.json
+Homestead.yaml
+auth.json
+npm-debug.log
+yarn-error.log
+bin
+
+# editors
+/.fleet
+/.idea
+/.vscode
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+!.gitkeep
+laravel.log

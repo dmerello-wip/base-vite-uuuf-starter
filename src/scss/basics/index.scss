@@ -1,0 +1,14 @@
+@use "b-normalize";//Normalize browser stiles
+@use "b-root";//custom vars into root setup
+/*
+base typography to elements (not classes) and/or important generic classes to apply because of
+project requirements
+*/
+@use "b-typography";
+@use "b-buttons";// ui buttons
+@use "b-icons";//base setup for icons
+@use "b-forms";// base ui form fields
+@use "b-pagination";//base ui for pagination bar used on listings
+@use "b-scaffolding";//base setup to most important document elements
+@use "b-accordion";//base ui for accordions
+@use "b-animations";//base setup for animations

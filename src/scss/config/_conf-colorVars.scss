@@ -1,0 +1,27 @@
+//$doc-bg-color: #ffffff;//set document background
+//$doc-fg-color: null;//set document color
+$color-vars-prefix: 'wip-color';//prefix to apply to custom-vars at root (ie: --wip-color-primary: [color_value])'
+
+//Palette of colors to be used by getColor() function ie with utils module used into a component: utils.getColor('primary')
+//This list is default list but we can add/change key:values
+$custom-colors: (
+    "primary": #4700cc,
+    "secondary": #f78f08,
+    "light": #ffffff,
+    "dark": #2e2e2e,
+    "black": #000000,
+    "grey": #5b5b5b,
+    "grey-02": #838282,
+    "grey-03": #979797,
+    "grey-04": #c4c4c4,
+    "grey-05": #f6f6f6,
+    "border": #cccccc,
+    "disabled": #aaaaaa,
+    "text-disabled": #777777,
+    "border-light": #e5e5e5,
+    "error": #eb5757,
+    "warning": #e6b20d,
+    "success": #548e1d,
+    "info": #005f82,
+);
+

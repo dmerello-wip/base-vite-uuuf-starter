@@ -1,0 +1,85 @@
+@use "sass:map";
+@use "sass:list";
+
+//VIEWPORTS
+$viewports: (
+    xxxl: 1600,
+    xxl: 1340,
+    xl: 1280,
+    lg: 1024,
+    md: 768,
+    sm: 375,
+) !default;
+
+//CONTAINER MAIN PAD X BY VIEWPORT
+$container-pad-x:(
+    sm: 20,
+    lg: 30,
+    xl: 100
+)!default;
+
+//grid mixin default params
+$grid-mixin-defaults: (
+    cols: 12,
+    gapy: 10,
+    gapx: 10,
+) !default;
+
+@mixin containerPadVars(){
+    @if list.length($container-pad-x) > 0 {
+        @each $breakpoint,$value in $container-pad-x {
+            @if map.has-key($viewports,$breakpoint) {
+                @include mediaFrom($breakpoint){
+                    :root{
+                        --main-container-pad-x: #{$value};
+                    }
+                }
+            }
+        }
+    }
+}
+@mixin mediaTo($viewportRef) {
+  $selectedViewport: map.get($viewports, $viewportRef);
+  $viewportTotal: $selectedViewport - 1;
+  @media screen and (max-width: $viewportTotal*1px) {
+    @content;
+  }
+}
+
+@mixin mediaFrom($viewportRef) {
+  $selectedViewport: map.get($viewports, $viewportRef);
+  $viewportTotal: $selectedViewport;
+  @media screen and (min-width: $viewportTotal*1px) {
+    @content;
+  }
+}
+
+@mixin print() {
+    @media print {
+        @content;
+    }
+}
+
+@mixin mainContainer($viewport: "xxl",$innerContainerBy:'') {
+  $maxWidth: map.get($viewports, $viewport);
+  width: calc(100% - (var(--main-container-pad-x) * 2px));
+  max-width: $maxWidth * 1px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@mixin grid(
+  $cols: map.get($grid-mixin-defaults, 'cols'),
+  $gapY: map.get($grid-mixin-defaults, 'gapy'),
+  $gapX: map.get($grid-mixin-defaults, 'gapx')
+) {
+  display: grid;
+  grid-template-columns: repeat($cols, 1fr);
+  gap: calc(#{$gapY} * 1px) calc(#{$gapX} * 1px);
+}
+
+@mixin flex($alignment: start, $justify: start){
+    display: flex;
+    align-items: $alignment;
+    justify-content: $justify;
+}

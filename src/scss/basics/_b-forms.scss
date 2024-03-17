@@ -1,0 +1,138 @@
+@use "../placeholders";
+@use "../utils";
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="date"],
+input[type="tel"],
+select {
+  @extend %text-input-stroked;
+}
+
+/*specific input number override*/
+input[type="number"] {
+  -moz-appearance: textfield;
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+select {
+  &[multiple] {
+    min-height: 10rem;
+  }
+}
+select,
+textarea {
+  appearance: none;
+  width: 100%;
+}
+
+textarea {
+  width: 100%;
+  min-height: 20rem;
+  resize: none;
+}
+
+/* CUSTOM INPUTS */
+.form-input,
+.form-select {
+  --display-error-msg: none;
+  --input-txt-color: #{utils.getColor("dark")};
+  --input-border-color: #{utils.getColor("grey-03")};
+  --input-bg-wrapper: #{utils.getColor("light")};
+  position: relative;
+  margin-bottom: 1rem;
+  &.inline-field {
+    display: inline-block;
+    margin-right: 1.5rem;
+  }
+  & > label {
+    display: block;
+    margin-bottom: .7rem;
+    font-size: 1.4rem;
+  }
+  .form-input,
+  .form-select {
+    &__wrapper {
+      position: relative;
+      color: var(--input-txt-color);
+      input,
+      select {
+        @extend %text-input-stroked;
+        background-color: var(--input-bg-wrapper);
+        &:disabled {
+          --input-bg-wrapper: #{utils.getColor("grey-04")};
+          & ~ .form-select__icon {
+            --input-txt-color: #{utils.getColor("grey-03")};
+          }
+        }
+      }
+      input {
+        &:read-only {
+          color: utils.getColor("grey");
+        }
+      }
+    }
+    //__trigger only for textual inputs when need a button trigger into field overlay with icon
+    //difference with __icon is simply the pointer events
+    &__icon,
+    &__trigger {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+      width: 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--input-txt-color);
+    }
+    &__icon {
+      pointer-events: none;
+    }
+    &__error {
+      display: var(--display-error-msg);
+      margin-top: .5rem;
+      color: var(--input-txt-color);
+      font-size: 1.2rem;
+    }
+  }
+  /*specific select input*/
+  .form-select {
+    &__icon {
+      .icon {
+        --icon-size: 1rem;
+      }
+    }
+    //SELECT input read only
+    &.read-only-select {
+      --input-bg-wrapper: transparent;
+      --input-txt-color: #{utils.getColor('grey-03')};
+    }
+  }
+
+  //STATES
+  &.warning {
+    --input-txt-color: #{utils.getColor("warning")};
+    --input-border-color: #{utils.getColor("warning")};
+  }
+  &.error {
+    --display-error-msg: block;
+    --input-txt-color: #{utils.getColor("error")};
+    --input-border-color: #{utils.getColor("error")};
+  }
+  &.success {
+    --input-txt-color: #{utils.getColor("success")};
+    --input-border-color: #{utils.getColor("success")};
+  }
+  //sizes
+  &.input-sm {
+    --input-height: 2.8rem;
+    --input-f-size: 1.2rem;
+  }
+}

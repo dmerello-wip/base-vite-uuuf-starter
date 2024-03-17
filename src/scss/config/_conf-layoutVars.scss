@@ -1,0 +1,34 @@
+//Map of viewports/breakpoints to be used for current project
+$viewports: (
+    xxxl: 1400,
+    xxl: 1200,
+    xl: 1100,
+    lg: 992,
+    md: 768,
+    sm: 370,
+);
+
+//CONTAINER MAIN PAD X (starts from viewport target)
+/*$container-pad-x:(
+    sm: 20,
+    lg: 30,
+    xl: 100
+);*/
+
+/*grid mixin defaults */
+/*$grid-mixin-defaults: (
+    cols: 12,
+    gapy: 10,
+    gapx: 10,
+);*/
+/*
+Ordered List of base elements to define z-indexes into layout,
+indexes start from 1 so we can use zi-get() function from utils, i.e.: z-index: utils.zi-get('main')// 1
+*/
+$zi-base-elements: [
+    main,
+    header,
+    mainmenu,
+    footer,
+    modal
+];

@@ -1,0 +1,72 @@
+@use "../utils";
+$z-i-list: menu-mobile;
+
+.c-main-header{
+    --main-header-menu-display: block;
+    --main-header-lang-switch-display: block;
+    --main-header-display-burger:none;
+    --main-header-panels-container-bg: transparent;
+    --main-header-panels-container-pointer-evs: none;
+    position: sticky;
+    top: 0;
+    z-index: utils.zi-get(header);
+    background-color: utils.getColor('light');
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+    .main-header{
+        &__hamburger{
+            display: var(--main-header-display-burger);
+        }
+        &__wrapper{
+            @include utils.mainContainer();
+            padding: 2rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 4rem;
+        }
+        &__logo{
+            width: 15rem;
+        }
+        &__panels-container{
+            z-index: utils.zi-get(menu-mobile, $z-i-list);
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            height: calc(100vh - 100%);
+            height: calc(100dvh - 100%);
+            background-color: var(--main-header-panels-container-bg);
+            pointer-events: var(--main-header-panels-container-pointer-evs);
+            transition: background-color .4s ease-in-out;
+            overflow: hidden;
+        }
+        &__menu{
+            display: flex;
+            gap: 2rem;
+            justify-content: flex-end;
+            .c-main-menu-nav{
+                display: var(--main-header-menu-display);
+            }
+            .c-lang-switcher{
+                display: var(--main-header-lang-switch-display);
+            }
+        }
+    }
+    &.--open-panels{
+        --main-header-panels-container-bg: rgba(0,0,0,.4);
+        --main-header-panels-container-pointer-evs: all;
+    }
+}
+
+@include utils.mediaTo('lg'){
+    .c-main-header{
+        --main-header-display-burger: block;
+        --main-header-menu-display: none;
+        .main-header{
+            &__wrapper{
+                display: grid;
+                grid-template-columns: 1fr 15rem 1fr;
+            }
+        }
+    }
+}

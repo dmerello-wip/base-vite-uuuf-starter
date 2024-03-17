@@ -1,0 +1,54 @@
+@use '../placeholders';
+@use '../utils';
+
+button {
+  appearance: none;
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  &:focus {
+    outline: none;
+  }
+}
+
+.btn {
+  &--primary {
+    @extend %base-btn;
+    border: 1px solid utils.getColor('primary');
+    background-color: utils.getColor('light');
+    color: utils.getColor('primary');
+    &:hover {
+      color: utils.getColor('light');
+      background-color: utils.getColor('primary');
+    }
+  }
+  &--secondary {
+    @extend %base-btn;
+    border: 1px solid utils.getColor('primary');
+    background-color: utils.getColor('primary');
+    color: utils.getColor('light');
+    &:hover {
+      color: utils.getColor('primary');
+      background-color: utils.getColor('light');
+    }
+  }
+  &--stroked {
+    @extend %base-btn;
+    //specific btn styles here
+  }
+  &--primary-stroked {
+    @extend %base-btn;
+    //specific btn styles here
+  }
+  &--grey-stroked {
+    @extend %base-btn;
+    //specific btn styles here
+  }
+  &--text {
+    @extend %base-btn;
+    //specific btn styles here
+  }
+}
+

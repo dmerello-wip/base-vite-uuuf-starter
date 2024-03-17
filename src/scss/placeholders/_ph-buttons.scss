@@ -1,0 +1,86 @@
+@use '../utils';
+
+%base-btn {
+    --cta-border-radius: var(--button-radius, 4px);
+    --cta-bg-color: trasparent;
+    --cta-border-color: trasparent;
+    --cta-text-color: currentColor;
+    --cta-text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 2rem;
+    appearance: none;
+    border: 1px solid var(--cta-border-color);
+    font-size: 1.2rem;
+    min-height: 2.5rem;
+    text-decoration: none;
+    text-align: var(--cta-text-align);
+    font-weight: utils.$typo-bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    color: var(--cta-text-color);
+    border-radius: var(--cta-border-radius);
+    background-color: var(--cta-bg-color);
+
+    &:hover {
+        text-decoration: none;
+    }
+
+    &[data-default-label] {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &:before {
+            content: attr(data-default-label);
+            display: block;
+        }
+
+        &:disabled,
+        &.--disabled {
+            &:before {
+                content: attr(data-disabled-label);
+            }
+        }
+    }
+
+    &.--wide {
+        width: 100%;
+    }
+
+    &.--large {
+        padding: 0 1rem;
+        min-height: 3.2rem;
+        font-size: 1.4rem;
+    }
+
+    &.--has-icon {
+        gap: 1rem;
+
+        .icon {
+            --icon-size: 1.4rem;
+        }
+    }
+
+    &:disabled,
+    &.--disabled {
+        --cta-bg-color: #{utils.getColor("disabled")};
+        --cta-border-color: transparent;
+        --cta-text-color: #{utils.getColor("text-disabled")};
+        opacity: 0.6;
+        cursor: default;
+        pointer-events: none;
+    }
+
+    &.--hidden {
+        display: none;
+    }
+
+    &.--text-light {
+        --cta-text-color: #{utils.getColor("light")};
+        &:hover {
+            --cta-text-color: #{utils.getColor("light")};
+        }
+    }
+}

@@ -1,0 +1,77 @@
+@use '../../utils';
+
+.c-video-modal {
+    z-index: utils.zi-get(modal);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #000000dc;
+    display: none;
+    overflow-x: hidden;
+    overflow-y: auto;
+    &.modal-open {
+        display: block;
+        .video-modal {
+            &__wrapper {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                height: 100vh;
+                height: 100dvh;
+            }
+            &__close {
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+                display: flex;
+                background-color: utils.getColor("grey-03");
+                cursor: pointer;
+                padding: 0;
+                width: 3rem;
+                height: 3rem;
+                border-radius: .5rem;
+                font-size: 3rem;
+                button {
+                    color: utils.getColor("light");
+                    font-weight: utils.$typo-bold;
+                    width: 100%;
+                    height: 100%;
+                }
+                .icon {
+                    --icon-size: 3rem;
+                }
+            }
+            &__body{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            &__container {
+                width: min(128rem, 100%);
+            }
+            &__extra{
+                display: block;
+            }
+        }
+    }
+}
+
+@include utils.mediaTo("md") {
+    .c-video-modal {
+        &.modal-open {
+            .video-modal {
+                &__close {
+                    font-size: 2rem;
+                    .icon {
+                        --icon-size: 2rem;
+                    }
+                }
+                &__body {
+                    padding: 0;
+                }
+            }
+        }
+    }
+}

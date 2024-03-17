@@ -1,0 +1,44 @@
+[data-acc] {
+    --icon-rotation: 0deg;
+    --panel-height: 0;
+    --panel-overflow: hidden;
+
+    &[data-acc="open"] {
+        --icon-rotation: 180deg;
+        --panel-height: auto;
+        --panel-overflow: auto;
+    }
+
+    // TODO: disabled style (open, closed or last state?)
+
+    [data-acc-trigger] {
+        cursor: pointer;
+    }
+
+    [data-acc-icon] {
+        transition: transform 0.4s ease-in-out;
+        transform: rotate3d(1, 0, 0, var(--icon-rotation));
+    }
+
+    [data-acc-panel] {
+        // prohibit vertical padding, it interferes with animation.
+        // if needed, apply padding to panel's first child
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+
+        height: var(--panel-height);
+        overflow: var(--panel-overflow);
+
+        transition: 0.5s ease-in-out;
+        transition-property: height, visibility;
+
+        &[data-acc-panel="animate"] {
+            // display: block !important;
+            overflow: hidden;
+        }
+    }
+
+    [data-acc-panel-container] {
+        overflow: auto;
+    }
+}

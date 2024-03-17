@@ -1,0 +1,82 @@
+@use "../placeholders";
+@use "../utils";
+
+.c-contact-form {
+    --align-text: left;
+    @extend %component-padding;
+
+    &.text-left {
+        --align-text: left;
+    }
+    &.text-center {
+        --align-text: center;
+    }
+    &.text-right {
+        --align-text: right;
+    }
+    .contact-form {
+        &__wrapper {
+            @include utils.mainContainer();
+        }
+        &__head {
+            text-align: var(--align-text);
+            max-width: 80%;
+            margin: 0 auto;
+        }
+        &__title {
+            @extend %typo-component-title;
+        }
+        &__text {
+            @extend %typo-component-text;
+        }
+        &__form {
+            max-width: 80%;
+            margin: 5rem auto 0;
+            &__grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                column-gap: 3rem;
+                row-gap: 1rem;
+            }
+            &__btn {
+                display: flex;
+                justify-content: center;
+                margin-top: 2rem;
+            }
+            &__generic-error {
+                margin-top: 1rem;
+                color: utils.getColor('error');
+                font-weight: utils.$typo-bold;
+                text-align: center;
+            }
+            &__success {
+                margin-top: 1rem;
+                color: utils.getColor('success');
+                font-weight: utils.$typo-bold;
+                text-align: center;
+            }
+        }
+    }
+}
+
+@include utils.mediaTo('md') {
+    .c-contact-form {
+        .contact-form {
+            &__head {
+                max-width: 100%;
+            }
+            &__form {
+                max-width: 100%;
+                margin-top: 4rem;
+                &__grid {
+                    grid-template-columns: 1fr;
+                }
+                &__btn {
+                    button {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}

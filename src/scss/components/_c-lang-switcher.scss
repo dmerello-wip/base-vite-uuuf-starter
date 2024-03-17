@@ -1,0 +1,128 @@
+@use "../utils";
+
+.c-lang-switcher {
+    --lang-switcher-current-color: #{utils.getColor('black')};
+    position: relative;
+    margin: 0;
+    display: inline-flex;
+    align-items: center;
+    align-self: stretch;
+    justify-content: center;
+    padding: 0 .5rem;
+
+    .lang {
+        &__current,
+        &__select,
+        &__list{
+            text-transform: uppercase;
+        }
+        &__current{
+            height: 100%;
+            display: flex;
+            align-items:center;
+            gap: .5rem;
+            cursor: pointer;
+            transition: border-color .3s ease-in-out;
+            color: var(--lang-switcher-current-color);
+            .icon{
+              --icon-size: .8rem;
+            }
+            /*&:after {
+                content: '';
+                display: block;
+                width: 0;
+                height:0;
+                margin-left: .8rem;
+                border-style: solid;
+                border-width: 5px 5px 0 5px;
+                border-color: currentColor transparent transparent transparent;
+                transition: transform .3s ease-in-out;
+            }*/
+        }
+        &__select{
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          opacity: 0;
+          cursor: pointer;
+        }
+        &__list {
+            position: absolute;
+            top:100%;
+            left:0;
+            width: 100%;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            z-index: utils.zi-get(main);
+            transform: scaleY(0);
+            transform-origin: top;
+            transition: transform .3s ease-in-out;
+            background: utils.getColor(light);
+            box-shadow: 0 10px 10px rgba(0,0,0,.2);
+        }
+        &__item {
+
+            text-align: center;
+            a {
+                display: block;
+                padding: 1rem 0;
+                text-decoration: none;
+
+                &:hover {
+                    color: utils.getColor('secondary');
+                    background: rgba(255,255,255,.1);
+                }
+            }
+        }
+    }
+}
+
+@include utils.mediaFrom('md') {
+    .c-lang-switcher {
+        &:hover {
+            .lang {
+                &__list {
+                    transform: scaleY(1);
+                }
+                &__current {
+                    &:after {
+                        transform: scaleY(-1);
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include utils.mediaTo('md') {
+    .c-lang-switcher {
+        padding: 0;
+        span, li{
+            font-size: 1.3rem;
+        }
+        .lang {
+            &__current {
+                padding: 1rem;
+                border: 1px solid transparent;
+            }
+            &__list {
+                border-top: none;
+            }
+        }
+        &.open {
+            .lang {
+                &__list {
+                    transform: scaleY(1);
+                }
+                &__current {
+                    &:after {
+                        transform: scaleY(-1);
+                    }
+                }
+            }
+        }
+    }
+}

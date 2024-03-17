@@ -1,0 +1,21 @@
+@use "../utils";
+/* PLACEHOLDERS */
+%text-input-transparent {
+    background: transparent;
+    border: none;
+    appearance: none;
+    min-height: 5rem;
+    padding: .5rem;
+}
+
+%text-input-stroked {
+    color: currentColor;
+    height: var(--input-height, 5rem);
+    min-width: var(--input-width, 12rem);
+    width: 100%;
+    padding: 1rem 1.5rem;
+    border: 1px solid var(--input-border-color, currentColor);
+    font-size: var(--input-f-size, 1.4rem);
+    border-radius: 5px;
+    background-color: var(--input-bg-color, transparent);
+}

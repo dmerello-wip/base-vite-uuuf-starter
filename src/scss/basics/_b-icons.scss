@@ -1,0 +1,30 @@
+@use "../utils";
+/* We got our svg sprite definitions inserted directly at markup so we need to hide this svg*/
+#icons-symbols {
+  display: none;
+}
+/*Icon svg wrapped into .icon element */
+.icon {
+  --icon-size: 1.4rem;
+  color: currentColor;
+  display: inline-block;
+  width: var(--icon-size);
+  height: var(--icon-size);
+  @include utils.mediaFrom("lg") {
+    --icon-size: 1.6rem;
+  }
+  svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  &.i-2x {
+    --icon-size: 2.4rem;
+  }
+  &.i-3x {
+    --icon-size: 3.2rem;
+  }
+  &.i-4x {
+    --icon-size: 4rem;
+  }
+}

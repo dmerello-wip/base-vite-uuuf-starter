@@ -1,0 +1,15 @@
+[data-animate-target]{
+    [data-animate] {
+        transition: opacity 1s ease, transform 1s ease;
+        will-change: opacity, transform;
+        --perspective: 200px;
+        &[data-animate="in"] {
+            transform: perspective(#{var(--perspective)}) translate3d(0, 0, 0);
+            opacity: 1;
+        }
+        &[data-animate="out"] {
+            transform: perspective(#{var(--perspective)}) translate3d(0, 2rem, 0);
+            opacity: 0;
+        }
+    }
+}

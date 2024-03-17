@@ -1,0 +1,95 @@
+@use "../utils";
+
+.c-main-menu-nav{
+    --menu-nav-item-icon-transform: rotate(0);
+    --menu-item-txt-transform: uppercase;
+    --menu-nav-item-link-decoration: none;
+    --menu-nav-submenu-pointer-ev: none;
+    --menu-nav-submenu-opacity: 0;
+
+    position: relative;
+    z-index: utils.zi-get(mainmenu);
+
+    .menu-nav{
+        &__wrapper{
+            display: flex;
+        }
+        &__item{
+            position: relative;
+            font-size: 1.2rem;
+            text-transform: var(--menu-item-txt-transform);
+            font-weight: utils.$typo-bold;
+            a{
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                padding: 1.5rem 2rem;
+                text-decoration: var(--menu-nav-item-link-decoration);
+                & > .icon{
+                    transform: var(--menu-nav-item-icon-transform);
+                    transition: transform .4s ease-in-out;
+                }
+            }
+            &:hover{
+                --menu-nav-item-link-decoration: none;
+                --menu-nav-item-icon-transform: rotate(180deg);
+                --menu-nav-submenu-pointer-ev: all;
+                --menu-nav-submenu-opacity: 1;
+                color: utils.getColor('primary');
+                &.--subitem{
+                    --menu-nav-item-link-decoration: none;
+                    background-color: utils.getColor('primary');
+                    color: utils.getColor('light')
+                }
+            }
+            &.--subitem{
+                --menu-nav-item-link-decoration: none;
+                font-weight: utils.$typo-regular;
+            }
+        }
+        &__submenu{
+            --menu-item-txt-transform: none;
+            pointer-events: var(--menu-nav-submenu-pointer-ev);
+            opacity: var(--menu-nav-submenu-opacity);
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: fit-content;
+            min-width: 20rem;
+            background: utils.getColor('light');
+            transition-property: opacity, top;
+            transition-duration: .5s;
+            transition-timing-function: ease-in-out;
+        }
+    }
+}
+
+@include utils.mediaTo('lg'){
+    /*
+    .c-main-menu-nav{
+        --menu-nav-submenu-pointer-ev: all;
+        --menu-nav-submenu-opacity: 1;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        height: 100dvh;
+        background-color: rgba(0,0,0,.4);
+        .menu-nav{
+            &__wrapper{
+                width: min(50rem,100%);
+                background-color: utils.getColor('light');
+                flex-flow: column;
+            }
+            &__item,
+            &__submenu{
+                position: static;
+            }
+            &__submenu{
+                border: none;
+            }
+        }
+    }
+    */
+}

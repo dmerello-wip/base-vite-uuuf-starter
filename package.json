@@ -3,7 +3,7 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "vite build"        
+        "build": "vite build"
     },
     "devDependencies": {
         "@babel/eslint-parser": "^7.19.1",
@@ -21,10 +21,12 @@
         "mini-css-extract-plugin": "^2.7.2",
         "postcss": "^8.1.14",
         "postcss-loader": "^7.0.2",
+        "rollup-plugin-html": "^0.2.1",
         "sass": "^1.70.0",
         "sass-loader": "^13.2.0",
         "sass-resources-loader": "^2.2.5",
         "vite": "^5.1.4",
+        "vite-plugin-html": "^3.2.2",
         "webpack": "^5.75.0",
         "webpack-cli": "^5.0.1"
     },
